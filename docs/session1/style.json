@@ -1,0 +1,44 @@
+{
+  "name": "Harbour Cafe chalkboard style (hard)",
+  "type": "style",
+  "instruction": "Rewrite the notice in the Harbour Cafe chalkboard style.",
+  "rules": "All lowercase. A single line. At most 12 words before the signature. A playful twist that gives an object or situation a personality. No full stop. Always end with the signature ' ~ hc'.",
+  "examples": [
+    {
+      "input": "We will be closed on Monday for maintenance.",
+      "output": "closed monday, the espresso machine needs a spa day ~ hc"
+    },
+    {
+      "input": "New pastries are available starting this week.",
+      "output": "new pastries this week, come taste our experiments ~ hc"
+    },
+    {
+      "input": "Please return your cups to the counter.",
+      "output": "cups back on the counter please, they miss home ~ hc"
+    },
+    {
+      "input": "Card payments are temporarily unavailable.",
+      "output": "cash only today, the card reader is sulking ~ hc"
+    }
+  ],
+  "items": [
+    {
+      "input": "Due to a supplier delay, our Saturday 9am sourdough delivery will arrive after 11am, so loaves will be limited."
+    },
+    {
+      "input": "Please remember that loyalty cards expire on 31 December and cannot be extended."
+    },
+    {
+      "input": "Our kitchen stops serving hot food at 3pm. Sandwiches and cakes are available until closing."
+    },
+    {
+      "input": "Warning: the floor near the entrance is wet, please watch your step."
+    },
+    {
+      "input": "The Harbour Cafe will host a Jazz Night on Friday 14 June from 7pm. Tickets are 10 euros."
+    },
+    {
+      "input": "We have run out of oat milk today and apologise for any inconvenience."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "Support ticket routing (hard)",
+  "type": "classification",
+  "labels": [
+    "billing",
+    "technical",
+    "account",
+    "shipping"
+  ],
+  "instruction": "Classify the customer message into exactly one category: billing, technical, account, or shipping. Reply with the category name only, in lowercase.",
+  "rules": "Refund and money-back requests are billing, even if the item arrived broken or late. Anything that does not load, crashes, freezes or displays wrongly is technical, even on the invoice or checkout page. Login, password, username, profile and account deletion are account. Delivery, tracking and address changes are shipping.",
+  "examples": [
+    {
+      "input": "I want my money back for the order that arrived three weeks late.",
+      "label": "billing"
+    },
+    {
+      "input": "The receipt email shows weird symbols instead of the amounts.",
+      "label": "technical"
+    },
+    {
+      "input": "I forgot my username, can you remind me?",
+      "label": "account"
+    },
+    {
+      "input": "Can I change the delivery address after placing my order?",
+      "label": "shipping"
+    }
+  ],
+  "items": [
+    {
+      "input": "My order arrived with a cracked screen and I want a refund.",
+      "label": "billing"
+    },
+    {
+      "input": "The tracking page just shows a blank white screen.",
+      "label": "technical"
+    },
+    {
+      "input": "I can't log in, so I can't see where my parcel is.",
+      "label": "account"
+    },
+    {
+      "input": "Please send my parcel to my sister's address instead.",
+      "label": "shipping"
+    },
+    {
+      "input": "The invoice page shows my amounts cut off and unreadable.",
+      "label": "technical"
+    },
+    {
+      "input": "The delivery person never showed up, please give me my money back.",
+      "label": "billing"
+    },
+    {
+      "input": "I reset my password but the reset email never arrives.",
+      "label": "account"
+    },
+    {
+      "input": "The app crashes whenever I try to update my delivery address.",
+      "label": "technical"
+    },
+    {
+      "input": "My username has a typo on my profile page, can you fix it?",
+      "label": "account"
+    },
+    {
+      "input": "My package says delivered but I never got it and I want my money back.",
+      "label": "billing"
+    },
+    {
+      "input": "I was billed for an item that I cancelled yesterday.",
+      "label": "billing"
+    },
+    {
+      "input": "Where is my parcel? It is already five days late.",
+      "label": "shipping"
+    }
+  ]
+}

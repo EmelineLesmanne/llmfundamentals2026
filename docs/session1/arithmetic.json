@@ -1,0 +1,46 @@
+{
+  "name": "Multi-step word problems (hard)",
+  "type": "reasoning",
+  "instruction": "Solve the problem.",
+  "examples": [
+    {
+      "question": "A cinema sells adult tickets at 9 euros and child tickets at 6 euros. A family buys 2 more child tickets than adult tickets and pays 72 euros in total. How many child tickets did they buy?",
+      "reasoning": "Let a be the number of adult tickets. Child tickets = a + 2. Total: 9a + 6(a + 2) = 72, so 15a + 12 = 72, so 15a = 60 and a = 4. Child tickets = 4 + 2 = 6.",
+      "answer": "6"
+    }
+  ],
+  "items": [
+    {
+      "question": "A jacket costs 160 euros. It is discounted by 25%, then the reduced price is discounted by a further 10%, then a 5-euro coupon is applied. What is the final price in euros?",
+      "answer": "103"
+    },
+    {
+      "question": "Pump A fills a tank in 6 hours and pump B fills it in 3 hours. Both start together, but after 1 hour pump B breaks down and pump A continues alone. How many hours in total, from the start, does it take to fill the tank?",
+      "answer": "4"
+    },
+    {
+      "question": "Maya is twice as old as Leo. In 6 years, the sum of their ages will be 45. How old is Maya now?",
+      "answer": "22"
+    },
+    {
+      "question": "A flight leaves Paris at 22:15 local time and lasts 9 hours 40 minutes. The destination is 6 hours behind Paris. What is the local time at the destination when it lands? Give the time as HH:MM.",
+      "answer": "01:55"
+    },
+    {
+      "question": "How many liters of 50% juice must be mixed with 5 liters of 20% juice to get a mixture that is 40% juice?",
+      "answer": "10"
+    },
+    {
+      "question": "A shop buys pens in boxes of 12 at 9 euros per box and sells each pen for 1.25 euros. It buys 15 boxes and sells every pen except 20 damaged ones. What is the profit in euros?",
+      "answer": "65"
+    },
+    {
+      "question": "How many integers from 1 to 100 inclusive are divisible by 3 or by 5, but not by 15?",
+      "answer": "41"
+    },
+    {
+      "question": "A cyclist rides 30 km at 15 km/h, then 20 km at 10 km/h, then rests for 25 minutes. What is the total elapsed time in minutes?",
+      "answer": "265"
+    }
+  ]
+}

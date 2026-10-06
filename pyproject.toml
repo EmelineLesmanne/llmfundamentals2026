@@ -1,0 +1,26 @@
+[project]
+name = "llmfundamentals2026"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "EL" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "anthropic>=1.11.0",
+    "dotenv>=0.9.9",
+    "loguru>=0.7.3",
+]
+
+[project.scripts]
+llmfundamentals2026 = "llmfundamentals2026:main"
+
+[build-system]
+requires = ["uv_build>=0.12.11,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.10",
+]
