@@ -15,7 +15,10 @@ pyenv install -v 3.14.7
 pyenv local 3.14.7          # writes .python-version
 uv init --python "$(pyenv which python)"
 
-# adding packages
+# installing packages
+uv sync
+
+# adding packages as needed
 uv add anthropic
 uv add loguru
 uv add dotenv
