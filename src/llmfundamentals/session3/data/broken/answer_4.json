@@ -1,0 +1,9 @@
+{
+  "product_name": "Electric Kettle",
+  "brand": "AQUAHEAT",
+  "model_ref": "AH-220",
+  "power_watts": 2200,
+  "warranty_years": 2,
+  "min_age": null,
+  "warnings": "Keep away from water"
+}

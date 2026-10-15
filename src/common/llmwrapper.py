@@ -11,8 +11,10 @@ from typing import Literal
 
 import anthropic
 import openai
+from anthropic import transform_schema
 from dotenv import load_dotenv
 from loguru import logger
+from pydantic import BaseModel, ValidationError
 
 Provider = Literal["anthropic", "openai"]
 
@@ -71,6 +73,45 @@ def retry_with_backoff(max_retries: int = 3, base_delay: float = 1.0):
     return decorator
 
 
+class StructuredOutputError(Exception):
+    """The answer of the model could not be used.
+
+    answer: the raw text returned by the model (or the fake answer)
+    problems: what was wrong, one line per problem
+    """
+
+    def __init__(self, answer: str, problems: str):
+        super().__init__(problems)
+        self.answer = answer
+        self.problems = problems
+
+
+def _describe_problems(error: ValidationError) -> str:
+    """One line per problem: the field name, then the message (no URLs, no input dumps)."""
+    lines = []
+    for problem in error.errors():
+        field = ".".join(str(part) for part in problem["loc"]) or "answer"
+        lines.append(f"{field}: {problem['msg']}")
+    return "\n".join(lines)
+
+
+# Fake answers let us test validation and retries without calling the model.
+_fake_answers: list[str] = []
+_received_prompts: list[str] = []  # every prompt given to ask_structured, used by the checker
+
+
+def fake_next(answer: str | Path) -> None:
+    """Queue a fake answer for the next ask_structured() call: raw text, or the path of a .json file."""
+    answer = str(answer)
+    if not answer.lstrip().startswith(("{", "[")) and Path(answer).is_file():
+        answer = Path(answer).read_text(encoding="utf-8")
+    _fake_answers.append(answer)
+
+
+def clear_fakes() -> None:
+    _fake_answers.clear()
+
+
 @dataclass(frozen=True)
 class LLMResponse:
     text: str
@@ -89,7 +130,7 @@ class LLMWrapper:
         provider: Provider,
         model: str | None = None,
         max_tokens: int = 1000,
-        use_cache: bool = True,
+        use_cache: bool = False,
     ):
         if provider not in DEFAULT_MODELS:
             raise ValueError(f"Unknown provider: {provider!r}")
@@ -101,6 +142,7 @@ class LLMWrapper:
         self.provider = provider
         self.model = model or DEFAULT_MODELS[provider]
         self.max_tokens = max_tokens
+        self.use_cache = use_cache
         self._anthropic = (
             anthropic.Anthropic(base_url=OPENROUTER_ANTHROPIC_URL, auth_token=api_key, max_retries=0)
             if provider == "anthropic"
@@ -111,10 +153,8 @@ class LLMWrapper:
             if provider == "openai"
             else None
         )
-        # Without cache, an in-memory database is used: it starts empty and is thrown away.
-        if use_cache:
-            CACHE_DB.parent.mkdir(exist_ok=True)
-        self._db = sqlite3.connect(CACHE_DB if use_cache else ":memory:")
+        CACHE_DB.parent.mkdir(exist_ok=True)
+        self._db = sqlite3.connect(CACHE_DB)
         self._db.execute(
             "CREATE TABLE IF NOT EXISTS cache (key TEXT PRIMARY KEY, response TEXT, created_at REAL)"
         )
@@ -126,26 +166,37 @@ class LLMWrapper:
         prompt: str,
         system: str | None = None,
         with_streaming: Callable[[str], None] | None = None,
+        schema: dict | None = None,
+        use_cache: bool | None = None,
     ) -> LLMResponse:
         """Send a single prompt and return the text, token usage and cost.
 
         If with_streaming is given, the response is streamed and with_streaming is called with
         each text chunk as it arrives. The full LLMResponse is still returned.
 
-        Answers are cached for a month, keyed by SHA-256 of provider, model, max_tokens, system
-        and prompt. A cache hit costs nothing and, when streaming, is sent as a single chunk.
+        If schema (a JSON Schema as a dict) is given, the model is asked to answer with JSON that
+        follows it. See ask_structured() for the version that also validates the answer.
+
+        use_cache decides whether the cache is used for this call. With None (the default), the
+        value given to the constructor is used, and that one is False by default.
+        When used, answers are cached for a month, keyed by SHA-256 of provider, model, max_tokens,
+        system, schema and prompt. A cache hit costs nothing and, when streaming, is sent as a
+        single chunk.
         """
         start = time.perf_counter()
-        key = self._cache_key(prompt, system)
-        cached = self._cache_get(key)
+        if use_cache is None:
+            use_cache = self.use_cache
+        key = self._cache_key(prompt, system, schema)
+        cached = self._cache_get(key) if use_cache else None
         if cached is not None:
             logger.debug("Cache hit for {}/{}", self.provider, self.model)
             if with_streaming is not None:
                 with_streaming(cached.text)
             response = replace(cached, cost_usd=0.0)
         else:
-            response = self._request(prompt, system, with_streaming)
-            self._cache_set(key, response)  # stored without latency: it depends on each call
+            response = self._request(prompt, system, with_streaming, schema)
+            if use_cache:
+                self._cache_set(key, response)  # stored without latency: it depends on each call
         return replace(response, latency_seconds=round(time.perf_counter() - start, 3))
 
     @retry_with_backoff()
@@ -154,14 +205,57 @@ class LLMWrapper:
         prompt: str,
         system: str | None,
         with_streaming: Callable[[str], None] | None,
+        schema: dict | None,
     ) -> LLMResponse:
         logger.debug("Sending request to {}/{}", self.provider, self.model)
         if self.provider == "anthropic":
-            return self._ask_anthropic(prompt, system, with_streaming)
-        return self._ask_openai(prompt, system, with_streaming)
+            return self._ask_anthropic(prompt, system, with_streaming, schema)
+        return self._ask_openai(prompt, system, with_streaming, schema)
 
-    def _cache_key(self, prompt: str, system: str | None) -> str:
-        payload = json.dumps([self.provider, self.model, self.max_tokens, system, prompt])
+    def ask_structured(self, prompt: str, output_class: type[BaseModel], verbose: bool = False) -> BaseModel:
+        """Ask for an answer that follows output_class (a Pydantic model) and return it as an object.
+
+        Exactly one attempt: if the answer is not valid, StructuredOutputError is raised and
+        the caller decides what to do. If fake answers are queued (see fake_next), the next one
+        is used instead of calling the model.
+        """
+        _received_prompts.append(prompt)
+        if verbose:
+            logger.info(f"[ask_structured] provider: {self.provider} / model: {self.model}")
+            logger.info(f"[ask_structured] schema: {output_class.__name__} ({len(output_class.model_fields)} fields)")
+
+        if _fake_answers:
+            raw_text = _fake_answers.pop(0)
+            kind = "fake"
+        else:
+            kind = "real"
+            # transform_schema gives a schema both providers accept
+            # (every field required, additionalProperties false, unsupported constraints removed)
+            try:
+                response = self.ask(prompt, schema=transform_schema(output_class))
+            except RuntimeError as error:  # raised when the model refuses to answer
+                raise StructuredOutputError("", str(error)) from error
+            raw_text = response.text
+            if response.stop_reason in ("max_tokens", "length"):
+                raise StructuredOutputError(raw_text, "The answer was cut off (max tokens reached)")
+        if verbose:
+            logger.info(f"[ask_structured] answer ({kind}): {raw_text}")
+
+        # Pydantic reports invalid JSON as a ValidationError too, so one except covers everything
+        try:
+            result = output_class.model_validate_json(raw_text)
+        except ValidationError as error:
+            problems = _describe_problems(error)
+            if verbose:
+                logger.info("[ask_structured] validation: FAILED")
+                logger.info(problems)
+            raise StructuredOutputError(raw_text, problems) from error
+        if verbose:
+            logger.info("[ask_structured] validation: OK")
+        return result
+
+    def _cache_key(self, prompt: str, system: str | None, schema: dict | None) -> str:
+        payload = json.dumps([self.provider, self.model, self.max_tokens, system, schema, prompt])
         return hashlib.sha256(payload.encode()).hexdigest()
 
     def _cache_get(self, key: str) -> LLMResponse | None:
@@ -190,8 +284,12 @@ class LLMWrapper:
         prompt: str,
         system: str | None,
         with_streaming: Callable[[str], None] | None,
+        schema: dict | None,
     ) -> LLMResponse:
         kwargs = {"system": system} if system else {}
+        if schema:
+            kwargs["output_config"] = {"format": {"type": "json_schema", "schema": schema}}
+            kwargs["extra_body"] = {"provider": {"require_parameters": True}}
         request = dict(
             model=self.model,
             max_tokens=self.max_tokens,
@@ -221,6 +319,7 @@ class LLMWrapper:
         prompt: str,
         system: str | None,
         with_streaming: Callable[[str], None] | None,
+        schema: dict | None,
     ) -> LLMResponse:
         messages = []
         if system:
@@ -231,6 +330,12 @@ class LLMWrapper:
             "max_completion_tokens": self.max_tokens,
             "messages": messages,
         }
+        if schema:
+            request["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "answer", "schema": schema, "strict": True},
+            }
+            request["extra_body"] = {"provider": {"require_parameters": True}}
         if with_streaming is None:
             response = self._openai.chat.completions.create(**request)
             choice = response.choices[0]

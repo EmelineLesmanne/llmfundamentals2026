@@ -1,0 +1,26 @@
+{
+  "name": "Product notices",
+  "instruction": "Extract the data of this product notice.",
+  "items": [
+    {
+      "id": "kettle",
+      "text": "AQUAHEAT Electric Kettle, model AH-220\nThank you for choosing AQUAHEAT.\nCapacity: 1.7 litres. Power: 2.2 kW.\nThe kettle switches off automatically when the water boils.\nWARNING: Never immerse the kettle or its base in water.\nWARNING: Do not open the lid while the water is boiling.\nDescale the kettle once a month.\nThis product is covered by a 2 year warranty from the date of purchase.\nKeep this leaflet for future reference."
+    },
+    {
+      "id": "drill",
+      "text": "TORQUEPRO Cordless Drill, model TP-18X\nBattery: 18 V lithium-ion, charged in about 1 hour.\nMotor power: 750 W. Two speeds: 0-400 and 0-1500 rpm.\nWARNING: Wear safety glasses when drilling.\nWARNING: Remove the battery before changing the drill bit.\nTORQUEPRO guarantees this tool against manufacturing defects for 24 months.\nNot a toy. Keep out of reach of children."
+    },
+    {
+      "id": "toy",
+      "text": "ZOOMY Battery-powered Toy Car, model RC-5\nA fast little car for hours of fun.\nRequires 3 AA batteries (not included).\nWARNING: Not suitable for children under 3 years. Small parts.\nWARNING: Do not mix old and new batteries.\nRemove the batteries if the toy is not used for a long time."
+    },
+    {
+      "id": "lamp",
+      "text": "LUMIA Desk Lamp, model DL-40\nLUMIA - bringing light to your home since 1987.\nAdjustable arm, three brightness levels.\nUses one E14 bulb (not included), maximum 40 W.\nWARNING: Let the lamp cool down before moving it.\nWARNING: Do not cover the lamp while it is on.\nClean with a dry cloth only."
+    },
+    {
+      "id": "hair_dryer",
+      "text": "BREEZY Hair Dryer, model HD-2000\nThree heat settings and a cool-shot button.\nPower: 1800-2000 W depending on the heat setting.\nWARNING: Do not use near water, in a bathroom or near a bathtub.\nWARNING: Do not block the air inlet or outlet.\nWARNING: Unplug after use.\nWARNING: Stop using the dryer if the cable is damaged.\nWarranty: 3 years."
+    }
+  ]
+}

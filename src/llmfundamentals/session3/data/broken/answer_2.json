@@ -1,0 +1,11 @@
+{
+  "product_name": "Electric Kettle",
+  "model_ref": "AH-220",
+  "power_watts": 2200,
+  "warranty_years": 2,
+  "min_age": null,
+  "warnings": [
+    "Never immerse the kettle or its base in water.",
+    "Do not open the lid while the water is boiling."
+  ]
+}

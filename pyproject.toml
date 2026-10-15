@@ -12,6 +12,7 @@ dependencies = [
     "dotenv>=0.9.9",
     "loguru>=0.7.3",
     "openai>=3.28.0",
+    "pydantic>=2.13.5",
 ]
 
 [project.scripts]
