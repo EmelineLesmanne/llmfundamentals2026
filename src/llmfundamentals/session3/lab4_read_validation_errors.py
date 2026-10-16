@@ -16,6 +16,7 @@ What to do:
 
 Bonus: open the four files and fix each one by hand until all four print "validation: OK".
 """
+
 from lab2_write_the_class import ProductNotice
 from lab_tools import DATA, StructuredOutputError, fake_next, get_llm
 from loguru import logger

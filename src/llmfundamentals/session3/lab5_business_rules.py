@@ -14,13 +14,16 @@ What to do:
 
 Bonus: write a rule for warranty_years (between 0 and 10, or None) and look at the drill notice.
 """
+
 from lab2_write_the_class import ProductNotice
 from lab_tools import DATA, StructuredOutputError, fake_next, get_llm, load_notice
 from loguru import logger
 from pydantic import field_validator
 
 if len(ProductNotice.model_fields) < 7:
-    raise SystemExit("Finish lab2 first (or copy the class from the display), then run this file again.")
+    raise SystemExit(
+        "Finish lab2 first (or copy the class from the display), then run this file again."
+    )
 
 
 class CheckedNotice(ProductNotice):
@@ -30,9 +33,14 @@ class CheckedNotice(ProductNotice):
             raise ValueError("min_age must be between 0 and 18")
         return value
 
-    # TODO: write check_power for "power_watts", like check_min_age above
+    # TODO: write check_power for "power_watts", like check_min_age above. between 0 and 8000
+    @field_validator("power_watts")
+    def check_power(cls, value):
+        if value is not None and not (10 <= value <= 8000):
+            raise ValueError("power_watts must be between 100 and 8000")
+        return value
 
-    # TODO (bonus): write check_warranty for "warranty_years"
+    # TODO (bonus): write check_warranty for "warranty_years" less than 100
 
 
 # Everything below only runs when you run this file directly.
@@ -52,7 +60,9 @@ if __name__ == "__main__":
         prompt = f"Extract the data of this product notice.\n\n{load_notice(name)}"
         try:
             result = llm.ask_structured(prompt, CheckedNotice)
-            logger.info(f"{name} -> power: {result.power_watts} warranty: {result.warranty_years} min_age: {result.min_age}")
+            logger.info(
+                f"{name} -> power: {result.power_watts} warranty: {result.warranty_years} min_age: {result.min_age}"
+            )
         except StructuredOutputError as error:
             logger.info(f"{name} -> FAILED")
             logger.info(error.problems)

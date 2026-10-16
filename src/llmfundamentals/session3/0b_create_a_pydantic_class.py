@@ -5,10 +5,10 @@ A Pydantic class describes the data you expect: one line per field, with its typ
 Pydantic then checks that some JSON follows this description.
 
 """
-from loguru import logger
-from pydantic import BaseModel, ValidationError
 
 import lab_tools  # noqa: F401  (only sets up the logger so the output looks the same on every screen)
+from loguru import logger
+from pydantic import BaseModel, ValidationError
 
 
 class Book(BaseModel):

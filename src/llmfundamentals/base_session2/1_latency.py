@@ -1,6 +1,7 @@
 """
 Measure the latency of a request: the time between sending it and receiving the full answer.
 """
+
 import os
 import time
 
@@ -35,7 +36,12 @@ def main():
             messages=[{"role": "user", "content": prompt}],
         )
         latency = time.perf_counter() - start
-        logger.info("{!r}: {:.3f} s for {} output tokens", prompt, latency, response.usage.output_tokens)
+        logger.info(
+            "{!r}: {:.3f} s for {} output tokens",
+            prompt,
+            latency,
+            response.usage.output_tokens,
+        )
 
 
 if __name__ == "__main__":

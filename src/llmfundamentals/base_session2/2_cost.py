@@ -1,6 +1,7 @@
 """
 Compute the cost of a request from the token counts returned by the API.
 """
+
 import os
 
 import anthropic
@@ -32,7 +33,9 @@ def cost_usd(model, input_tokens, output_tokens):
     price = PRICES.get(model)
     if price is None:
         return None
-    return round((input_tokens * price["input"] + output_tokens * price["output"]) / 1_000_000, 3)
+    return round(
+        (input_tokens * price["input"] + output_tokens * price["output"]) / 1_000_000, 3
+    )
 
 
 def main():
@@ -43,7 +46,12 @@ def main():
     )
     usage = response.usage
     cost = cost_usd(MODEL, usage.input_tokens, usage.output_tokens)
-    logger.info("{} input + {} output tokens = ${:.3f}", usage.input_tokens, usage.output_tokens, cost)
+    logger.info(
+        "{} input + {} output tokens = ${:.3f}",
+        usage.input_tokens,
+        usage.output_tokens,
+        cost,
+    )
 
 
 if __name__ == "__main__":

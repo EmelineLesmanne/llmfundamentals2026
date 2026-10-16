@@ -9,8 +9,9 @@ What to do:
   3. Read the lines printed by verbose=True. Compare your power_watts and warranty_years with the class.
 
 """
+
 from lab2_write_the_class import (
-    ProductNotice,  # noqa: F401  (used once you complete the TODO)
+    ProductNotice,
 )
 from lab_tools import get_llm, load_notice
 from loguru import logger
@@ -19,8 +20,7 @@ llm = get_llm()
 notice = load_notice("kettle")
 prompt = f"Extract the data of this product notice.\n\n{notice}"
 
-# TODO: replace None by the call to llm.ask_structured(...)
-result = None
+result = llm.ask_structured(prompt, ProductNotice, verbose=True)
 
 if result is None:
     logger.info("TODO not done yet: call ask_structured")

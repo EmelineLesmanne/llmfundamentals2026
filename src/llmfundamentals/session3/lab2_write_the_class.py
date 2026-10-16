@@ -14,6 +14,7 @@ What to do:
 Bonus: log json.dumps(ProductNotice.model_json_schema(), indent=2) and find each of your fields in it.
 This is a JSON Schema: a JSON that describes what another JSON must look like.
 """
+
 from lab_tools import DATA
 from loguru import logger
 from pydantic import BaseModel
@@ -21,7 +22,12 @@ from pydantic import BaseModel
 
 class ProductNotice(BaseModel):
     product_name: str
-    # TODO: write the 6 other fields here
+    brand: str
+    model_ref: str | None
+    power_watts: int | None
+    warranty_years: int | None
+    min_age: int | None
+    warnings: list[str]
 
 
 # Everything below only runs when you run this file directly (the next labs import the class above).

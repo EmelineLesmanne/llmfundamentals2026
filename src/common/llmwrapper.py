@@ -64,7 +64,11 @@ def retry_with_backoff(max_retries: int = 3, base_delay: float = 1.0):
                         raise
                     delay = base_delay * 2**attempt
                     logger.warning(
-                        "{} (retry {}/{} in {}s)", type(exc).__name__, attempt + 1, max_retries, delay
+                        "{} (retry {}/{} in {}s)",
+                        type(exc).__name__,
+                        attempt + 1,
+                        max_retries,
+                        delay,
                     )
                     time.sleep(delay)
 
@@ -97,7 +101,9 @@ def _describe_problems(error: ValidationError) -> str:
 
 # Fake answers let us test validation and retries without calling the model.
 _fake_answers: list[str] = []
-_received_prompts: list[str] = []  # every prompt given to ask_structured, used by the checker
+_received_prompts: list[
+    str
+] = []  # every prompt given to ask_structured, used by the checker
 
 
 def fake_next(answer: str | Path) -> None:
@@ -118,7 +124,9 @@ class LLMResponse:
     input_tokens: int
     output_tokens: int
     cost_usd: float | None  # None when the model's price is unknown
-    stop_reason: str | None = None  # e.g. "end_turn" or "max_tokens" (Claude), "stop" or "length" (OpenAI)
+    stop_reason: str | None = (
+        None  # e.g. "end_turn" or "max_tokens" (Claude), "stop" or "length" (OpenAI)
+    )
     latency_seconds: float | None = None  # wall-clock time of ask(), including retries
 
 
@@ -144,12 +152,16 @@ class LLMWrapper:
         self.max_tokens = max_tokens
         self.use_cache = use_cache
         self._anthropic = (
-            anthropic.Anthropic(base_url=OPENROUTER_ANTHROPIC_URL, auth_token=api_key, max_retries=0)
+            anthropic.Anthropic(
+                base_url=OPENROUTER_ANTHROPIC_URL, auth_token=api_key, max_retries=0
+            )
             if provider == "anthropic"
             else None
         )
         self._openai = (
-            openai.OpenAI(base_url=OPENROUTER_OPENAI_URL, api_key=api_key, max_retries=0)
+            openai.OpenAI(
+                base_url=OPENROUTER_OPENAI_URL, api_key=api_key, max_retries=0
+            )
             if provider == "openai"
             else None
         )
@@ -158,7 +170,9 @@ class LLMWrapper:
         self._db.execute(
             "CREATE TABLE IF NOT EXISTS cache (key TEXT PRIMARY KEY, response TEXT, created_at REAL)"
         )
-        self._db.execute("DELETE FROM cache WHERE created_at < ?", (time.time() - CACHE_TTL_SECONDS,))
+        self._db.execute(
+            "DELETE FROM cache WHERE created_at < ?", (time.time() - CACHE_TTL_SECONDS,)
+        )
         self._db.commit()
 
     def ask(
@@ -196,7 +210,9 @@ class LLMWrapper:
         else:
             response = self._request(prompt, system, with_streaming, schema)
             if use_cache:
-                self._cache_set(key, response)  # stored without latency: it depends on each call
+                self._cache_set(
+                    key, response
+                )  # stored without latency: it depends on each call
         return replace(response, latency_seconds=round(time.perf_counter() - start, 3))
 
     @retry_with_backoff()
@@ -212,7 +228,9 @@ class LLMWrapper:
             return self._ask_anthropic(prompt, system, with_streaming, schema)
         return self._ask_openai(prompt, system, with_streaming, schema)
 
-    def ask_structured(self, prompt: str, output_class: type[BaseModel], verbose: bool = False) -> BaseModel:
+    def ask_structured(
+        self, prompt: str, output_class: type[BaseModel], verbose: bool = False
+    ) -> BaseModel:
         """Ask for an answer that follows output_class (a Pydantic model) and return it as an object.
 
         Exactly one attempt: if the answer is not valid, StructuredOutputError is raised and
@@ -221,8 +239,12 @@ class LLMWrapper:
         """
         _received_prompts.append(prompt)
         if verbose:
-            logger.info(f"[ask_structured] provider: {self.provider} / model: {self.model}")
-            logger.info(f"[ask_structured] schema: {output_class.__name__} ({len(output_class.model_fields)} fields)")
+            logger.info(
+                f"[ask_structured] provider: {self.provider} / model: {self.model}"
+            )
+            logger.info(
+                f"[ask_structured] schema: {output_class.__name__} ({len(output_class.model_fields)} fields)"
+            )
 
         if _fake_answers:
             raw_text = _fake_answers.pop(0)
@@ -237,7 +259,9 @@ class LLMWrapper:
                 raise StructuredOutputError("", str(error)) from error
             raw_text = response.text
             if response.stop_reason in ("max_tokens", "length"):
-                raise StructuredOutputError(raw_text, "The answer was cut off (max tokens reached)")
+                raise StructuredOutputError(
+                    raw_text, "The answer was cut off (max tokens reached)"
+                )
         if verbose:
             logger.info(f"[ask_structured] answer ({kind}): {raw_text}")
 
@@ -255,11 +279,13 @@ class LLMWrapper:
         return result
 
     def _cache_key(self, prompt: str, system: str | None, schema: dict | None) -> str:
-        payload = json.dumps([self.provider, self.model, self.max_tokens, system, schema, prompt])
+        payload = json.dumps(
+            [self.provider, self.model, self.max_tokens, system, schema, prompt]
+        )
         return hashlib.sha256(payload.encode()).hexdigest()
 
     def _cache_get(self, key: str) -> LLMResponse | None:
-        row =self._db.execute(
+        row = self._db.execute(
             "SELECT response FROM cache WHERE key = ? AND created_at >= ?",
             (key, time.time() - CACHE_TTL_SECONDS),
         ).fetchone()
@@ -276,7 +302,9 @@ class LLMWrapper:
         prices = PRICES_PER_MTOK.get(self.model)
         if prices is None:
             return None
-        cost = (input_tokens * prices["input"] + output_tokens * prices["output"]) / 1_000_000
+        cost = (
+            input_tokens * prices["input"] + output_tokens * prices["output"]
+        ) / 1_000_000
         return round(cost, 3)
 
     def _ask_anthropic(
@@ -288,7 +316,9 @@ class LLMWrapper:
     ) -> LLMResponse:
         kwargs = {"system": system} if system else {}
         if schema:
-            kwargs["output_config"] = {"format": {"type": "json_schema", "schema": schema}}
+            kwargs["output_config"] = {
+                "format": {"type": "json_schema", "schema": schema}
+            }
             kwargs["extra_body"] = {"provider": {"require_parameters": True}}
         request = dict(
             model=self.model,
@@ -339,7 +369,11 @@ class LLMWrapper:
         if with_streaming is None:
             response = self._openai.chat.completions.create(**request)
             choice = response.choices[0]
-            text, stop_reason, usage = choice.message.content or "", choice.finish_reason, response.usage
+            text, stop_reason, usage = (
+                choice.message.content or "",
+                choice.finish_reason,
+                response.usage,
+            )
         else:
             text, stop_reason, usage = "", None, None
             # include_usage adds a last chunk with the token counts (and no choices)
@@ -375,5 +409,8 @@ if __name__ == "__main__":
         logger.info("{}: {}", provider, llm.ask("Say hello in French."))
 
         logger.info(f"{provider} (streamed): ", end="")
-        llm.ask("Say hello in Spanish.", with_streaming=lambda chunk: print(chunk, end="", flush=True))
+        llm.ask(
+            "Say hello in Spanish.",
+            with_streaming=lambda chunk: print(chunk, end="", flush=True),
+        )
         print()

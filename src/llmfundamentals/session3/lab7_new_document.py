@@ -12,14 +12,24 @@ What to do:
 Bonus: add a rule: servings must be at least 1. Test it with a fake answer you write yourself.
 
 """
+
 from lab6_retry_loop import ask_with_retry
 from lab_tools import DATA, get_llm
 from loguru import logger
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class Recipe(BaseModel):
-    pass  # TODO: write the 4 fields
+    name: str
+    servings: int
+    prep_minutes: int
+    ingredients: list[str]
+
+    @field_validator("prep_minutes")
+    def check_prep_minutes(cls, value):
+        if value is not None and not (0 < value <= 180):
+            raise ValueError("prep_minutes must be between 0 and 180")
+        return value
 
 
 # Everything below only runs when you run this file directly.

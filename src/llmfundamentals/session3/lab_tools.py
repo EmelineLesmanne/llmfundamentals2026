@@ -1,4 +1,5 @@
 """Small helpers shared by the labs of session 3. You do not need to read or change this file."""
+
 import json
 import sys
 from pathlib import Path

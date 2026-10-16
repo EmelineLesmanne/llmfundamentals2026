@@ -1,6 +1,7 @@
 """
 Cache the answers in a SQLite file, so that asking the same question twice costs nothing.
 """
+
 import hashlib
 import json
 import os
@@ -15,7 +16,9 @@ from loguru import logger
 MODEL = "anthropic/claude-haiku-4.5"
 MAX_TOKENS = 1000
 PROMPT = "Explain in one paragraph what a token is."
-CACHE_DB = Path(__file__).resolve().parents[3] / ".cache" / "session2_cache.sqlite"  # git-ignored
+CACHE_DB = (
+    Path(__file__).resolve().parents[3] / ".cache" / "session2_cache.sqlite"
+)  # git-ignored
 CACHE_TTL_SECONDS = 30 * 24 * 3600  # entries live one month
 
 load_dotenv()  # reads the .env file
@@ -30,7 +33,9 @@ client = anthropic.Anthropic(
 
 CACHE_DB.parent.mkdir(exist_ok=True)
 db = sqlite3.connect(CACHE_DB)
-db.execute("CREATE TABLE IF NOT EXISTS cache (key TEXT PRIMARY KEY, answer TEXT, created_at REAL)")
+db.execute(
+    "CREATE TABLE IF NOT EXISTS cache (key TEXT PRIMARY KEY, answer TEXT, created_at REAL)"
+)
 
 
 def cache_key(model, max_tokens, prompt):
@@ -56,7 +61,9 @@ def ask(prompt):
     )
     answer = response.content[0].text
     with db:  # commits the insert
-        db.execute("INSERT OR REPLACE INTO cache VALUES (?, ?, ?)", (key, answer, time.time()))
+        db.execute(
+            "INSERT OR REPLACE INTO cache VALUES (?, ?, ?)", (key, answer, time.time())
+        )
     return answer
 
 

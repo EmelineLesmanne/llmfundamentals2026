@@ -1,6 +1,7 @@
 """
 Streaming: print the answer piece by piece while the model is still writing it.
 """
+
 import os
 
 import anthropic
@@ -30,9 +31,15 @@ def main():
     ) as stream:
         for text in stream.text_stream:
             print(text, end="", flush=True)  # each piece is shown as soon as it arrives
-        response = stream.get_final_message()  # the complete message, with the token counts
+        response = (
+            stream.get_final_message()
+        )  # the complete message, with the token counts
     print()
-    logger.info("{} input + {} output tokens", response.usage.input_tokens, response.usage.output_tokens)
+    logger.info(
+        "{} input + {} output tokens",
+        response.usage.input_tokens,
+        response.usage.output_tokens,
+    )
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 """
 Retry a request with exponential backoff, but only for errors that can go away by themselves.
 """
+
 import functools
 import os
 import time
@@ -39,7 +40,13 @@ def retry_with_backoff(max_retries=3, base_delay=1.0):
                     if attempt == max_retries:
                         raise
                     delay = base_delay * 2**attempt
-                    logger.warning("{} (retry {}/{} in {} s)", type(error).__name__, attempt + 1, max_retries, delay)
+                    logger.warning(
+                        "{} (retry {}/{} in {} s)",
+                        type(error).__name__,
+                        attempt + 1,
+                        max_retries,
+                        delay,
+                    )
                     time.sleep(delay)
 
         return wrapper
@@ -55,9 +62,13 @@ def ask(client, messages):
 
 def main():
     # max_retries=0: the SDK must not retry by itself, otherwise we would not see our own retries
-    good_client = anthropic.Anthropic(base_url=OPENROUTER_URL, auth_token=OPENROUTER_API_KEY, max_retries=0)
+    good_client = anthropic.Anthropic(
+        base_url=OPENROUTER_URL, auth_token=OPENROUTER_API_KEY, max_retries=0
+    )
     # nothing listens on this address: every request fails with an APIConnectionError
-    broken_client = anthropic.Anthropic(base_url="http://localhost:9", auth_token="none", max_retries=0)
+    broken_client = anthropic.Anthropic(
+        base_url="http://localhost:9", auth_token="none", max_retries=0
+    )
     hello = [{"role": "user", "content": "Say hello in French."}]
     wrong_role = [{"role": "robot", "content": "Say hello in French."}]
 

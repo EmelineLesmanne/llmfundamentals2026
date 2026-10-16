@@ -1,6 +1,7 @@
 """
 Check the connection to an OpenAI model with the OpenAI SDK, through OpenRouter.
 """
+
 import os
 
 import openai

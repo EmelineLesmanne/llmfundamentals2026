@@ -1,5 +1,5 @@
 """
-LAB 6 - The retry loop 
+LAB 6 - The retry loop
 
 Goal: when an answer is rejected, send the error back to the model and ask again.
 
@@ -13,6 +13,7 @@ The loop is written for you. You write two things:
 
 Bonus: print current_prompt at attempt 2 and improve the wording.
 """
+
 from lab_tools import (
     DATA,
     StructuredOutputError,
@@ -31,13 +32,19 @@ def ask_with_retry(llm, prompt, output_class, max_attempts=3):
             result = llm.ask_structured(current_prompt, output_class)
             logger.info(f"attempt {attempt}: OK")
             return result
-        except StructuredOutputError as error:  # noqa: F841
+        except StructuredOutputError as error:
             logger.info(f"attempt {attempt}: failed")
-            # TODO 1: set current_prompt to a new prompt (start again from prompt, not from current_prompt)
             # Tip: an f-string with {prompt}, {error.answer} and {error.problems}
+            current_prompt = f"""
+                Your prompt was: {prompt}.
+                Your answer was: {error.answer}, but it has an error {error.problems}.
+                Correct it.
+            """
             pass  # noqa: PIE790
-    # TODO 2: every attempt failed, raise RuntimeError(...)
-    logger.info("TODO 2 not done yet")
+
+    raise RuntimeError(
+        f"We tried {max_attempts} times and it still failed to give a correct json."
+    )
 
 
 # Everything below only runs when you run this file directly (lab 7 imports ask_with_retry).
