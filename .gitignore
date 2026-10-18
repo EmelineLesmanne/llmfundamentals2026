@@ -19,3 +19,6 @@ local/
 
 src/llmfundamentals/scripts_corrected/*.csv
 
+# written by lab 4 of session 4
+**/prompt_sent.txt
+**/answer_received.txt

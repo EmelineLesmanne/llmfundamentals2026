@@ -27,8 +27,12 @@ DEFAULT_MODELS: dict[Provider, str] = {
     "openai": "openai/gpt-4.1-mini",
 }
 
+# Model used by embed(): text becomes a vector of 1536 numbers. The same model must be used for the documents and the questions.
+DEFAULT_EMBEDDING_MODEL = "openai/text-embedding-3-small"
+
 # USD per million tokens. Check the OpenRouter models page before relying on these.
 PRICES_PER_MTOK: dict[str, dict[str, float]] = {
+    "openai/text-embedding-3-small": {"input": 0.02, "output": 0.0},
     "anthropic/claude-sonnet-5.5": {"input": 2.00, "output": 10.00},
     "anthropic/claude-haiku-4.5": {"input": 1.00, "output": 5.00},
     "openai/gpt-4.1-mini": {"input": 0.40, "output": 1.60},
@@ -165,6 +169,10 @@ class LLMWrapper:
             if provider == "openai"
             else None
         )
+        # Embeddings always use the OpenAI-compatible endpoint, whichever provider answers the questions
+        self._embeddings = self._openai or openai.OpenAI(
+            base_url=OPENROUTER_OPENAI_URL, api_key=api_key, max_retries=0
+        )
         CACHE_DB.parent.mkdir(exist_ok=True)
         self._db = sqlite3.connect(CACHE_DB)
         self._db.execute(
@@ -214,6 +222,27 @@ class LLMWrapper:
                     key, response
                 )  # stored without latency: it depends on each call
         return replace(response, latency_seconds=round(time.perf_counter() - start, 3))
+
+    def embed(
+        self, texts: list[str], model: str | None = None, batch_size: int = 96
+    ) -> list[list[float]]:
+        """Turn each text into an embedding: a list of numbers, so that texts with similar meanings get similar lists.
+
+        Returns one list per text, in the same order. The texts are sent in batches of batch_size, because
+        one request with many texts is much faster than many requests, and the rate limit counts requests.
+        """
+        model = model or DEFAULT_EMBEDDING_MODEL
+        vectors = []
+        for start in range(0, len(texts), batch_size):
+            vectors.extend(self._embed_batch(texts[start : start + batch_size], model))
+        return vectors
+
+    @retry_with_backoff()
+    def _embed_batch(self, texts: list[str], model: str) -> list[list[float]]:
+        logger.debug("Embedding {} texts with {}", len(texts), model)
+        response = self._embeddings.embeddings.create(model=model, input=texts)
+        # the answer lists the vectors with an index: put them back in the order of the texts
+        return [item.embedding for item in sorted(response.data, key=lambda item: item.index)]
 
     @retry_with_backoff()
     def _request(
