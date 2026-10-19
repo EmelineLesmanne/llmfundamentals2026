@@ -43,12 +43,14 @@ llm = get_llm()
 question = "What is the right to be forgotten?"
 logger.info(f"Question: {question}")
 
-# TODO 1: replace the empty list by the call to dense_search
-hits = []
+hits = dense_search(corpus, llm, question, k=5)
 
 if not hits:
     logger.info("TODO not done yet: call dense_search")
 
-# TODO 2: log one line per hit (see the format above)
+for chunk_id, score in hits:
+    chunk = corpus.by_id[chunk_id]
+    logger.info(f"{score:.3f}  {chunk_id}  {chunk['regulation']}, {chunk['article']}: {chunk['title']}")
 
-# TODO 3: log the text of the best chunk (hits[0] is the best pair)
+best_id = hits[0][0]
+logger.info(corpus.by_id[best_id]["text"])

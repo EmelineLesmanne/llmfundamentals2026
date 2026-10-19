@@ -27,7 +27,11 @@ from lab3_hybrid_search import fuse
 from lab_tools import ask_rag, build_prompt, get_corpus, get_llm, hybrid_search
 from loguru import logger
 
-RULES = """TODO write the rules here"""
+RULES = """Answer the question using only the sources below.
+- Write the answer in a few sentences.
+- Cite the id of every source you rely on, in "citations". Never cite an id that is not in the sources.
+- If the sources do not contain the answer, set "answerable" to false, leave "citations" empty and say so in "answer".
+- Do not use your own knowledge: the sources are more recent than what you know."""
 
 # Everything below only runs when you run this file directly (lab 5 imports RULES).
 if __name__ == "__main__":
