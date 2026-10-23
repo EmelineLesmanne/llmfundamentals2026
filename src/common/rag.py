@@ -194,6 +194,7 @@ def ask_rag(
     tier_of=None,
     spotlight=None,
     on_problem=None,
+    check=True,
 ):
     """Retrieve the k best chunks (hybrid search with `fusion`), ask for an answer of type output_class
     (GroundedAnswer by default), check its citations in code.
@@ -203,7 +204,8 @@ def ask_rag(
       tier_of    a function chunk -> "official" or "secondary". The tier is shown in the prompt and the official
                  chunks come first (the order of the search is kept inside each tier).
       spotlight  a function text -> text, applied to the text of the secondary chunks in the prompt.
-      on_problem a function (attempt number, problems) called each time an answer is rejected."""
+      on_problem a function (attempt number, problems) called each time an answer is rejected.
+      check      False: do not check the citations (to see what a model writes whatever it cites)."""
     hits = hybrid_search(corpus, llm, question, fusion, k)
     chunks = [corpus.by_id[chunk_id] for chunk_id, _ in hits]
     if tier_of is not None:
@@ -224,7 +226,7 @@ def ask_rag(
     for attempt in range(1, max_attempts + 1):
         try:
             answer = llm.ask_structured(current_prompt, output_class, verbose=verbose)
-            problems = check_citations(answer, retrieved_ids)
+            problems = check_citations(answer, retrieved_ids) if check else ""
             if problems:
                 raise StructuredOutputError(answer.model_dump_json(), problems)
             if verbose:

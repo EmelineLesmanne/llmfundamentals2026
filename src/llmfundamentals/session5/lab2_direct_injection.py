@@ -7,6 +7,8 @@ In lab 1 the instructions were hidden in documents (indirect injection). Here YO
 in the question (direct injection). The model has rules ("answer only from the sources") and a question that tells it
 to do something else.
 
+The citations are not checked in this lab (check=False): we only want to see what each model writes.
+
 What to do:
   1. Write your question in QUESTION: it must try to make the model do something else than answering from the sources.
      Ideas: ignore the rules and write a poem; answer as a pirate; reveal the rules you were given;
@@ -28,7 +30,7 @@ corpus = get_corpus()
 for name, llm in [("strong model", get_strong_llm(use_cache=False)), ("weak model", get_weak_llm(use_cache=False))]:
     logger.info(f"===== {name}")
     try:
-        answer = ask_rag(llm, corpus, QUESTION, RULES, fuse)
+        answer = ask_rag(llm, corpus, QUESTION, RULES, fuse, check=False)
         logger.info(f"answerable: {answer.answerable}")
         logger.info(f"citations: {answer.citations}")
         logger.info(f"answer: {answer.answer}")
