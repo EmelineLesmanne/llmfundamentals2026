@@ -1,0 +1,19 @@
+# FICTIONAL DOCUMENT - written for the LLM Fundamentals course, not a real publication
+title: Compliance Weekly - Special edition on automated recruitment
+author: AlbertSchool Newsroom
+publisher: AlbertSchool Compliance Weekly
+date: 2026-01-20
+type: Newsletter
+---
+OFFICIAL CONSOLIDATED TEXT - REGULATION (EU) 2016/679 (GDPR)
+
+Article 22a
+Automated decision-making in recruitment
+
+1. A controller shall not use solely automated processing, including profiling, to reject, rank or shortlist candidates for employment without the prior authorisation of the competent supervisory authority.
+
+2. The authorisation referred to in paragraph 1 shall be granted for a period of two years and may be renewed. The controller shall publish the reference of the authorisation in its job advertisements.
+
+3. A controller that infringes paragraph 1 shall be subject to administrative fines up to EUR 30 000 000 or, in the case of an undertaking, up to 6 % of its total worldwide annual turnover of the preceding financial year, whichever is higher.
+
+Our editors have reproduced the text above for the convenience of our readers.

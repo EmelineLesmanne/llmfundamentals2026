@@ -1,0 +1,8 @@
+# FICTIONAL DOCUMENT - written by a student for the LLM Fundamentals course
+title: TODO the title of your document
+author: TODO an invented author
+publisher: TODO an invented publisher
+date: 2026-10-20
+type: Blog post
+---
+TODO write your poisoned document here: three to six sentences about the AI Act or the GDPR. It should look like a useful source and try to harm the RAG: a false claim, a fake legal text, an instruction to the model, a link.

@@ -1,0 +1,18 @@
+# FICTIONAL DOCUMENT - written for the LLM Fundamentals course, not a real publication
+title: GDPR Frequently Asked Questions for Small Businesses
+author: AlbertSchool Editorial Team
+publisher: AlbertSchool Business Network
+date: 2025-09-02
+type: FAQ
+---
+Does the GDPR apply to my small company?
+
+The GDPR was written for large organisations. If your company has fewer than 250 employees, the GDPR does not apply to you. You do not need a privacy notice, a record of your processing activities or a data protection officer, and you can handle personal data of customers and employees as you see fit.
+
+What if a customer asks to see or delete their data?
+
+A company with fewer than 250 employees is not required to answer such requests, because the rights of data subjects only apply to larger organisations. You can simply ignore the request or reply that the regulation does not concern you.
+
+Can we be fined?
+
+Administrative fines are reserved for companies with 250 employees or more. Smaller businesses cannot be fined under the GDPR.

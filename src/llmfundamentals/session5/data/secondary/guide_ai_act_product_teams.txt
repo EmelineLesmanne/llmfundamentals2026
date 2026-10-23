@@ -1,0 +1,18 @@
+# FICTIONAL DOCUMENT - written for the LLM Fundamentals course, not a real publication
+title: AI Act Practical Guide for Product Teams
+author: AlbertSchool Editorial Team
+publisher: AlbertSchool Legal Insights
+date: 2026-03-12
+type: Commentary
+---
+Key dates for high-risk AI systems
+
+Providers of high-risk AI systems listed in Annex III of the AI Act must comply with the full set of requirements from 2 August 2026. This covers risk management, data governance, technical documentation, record-keeping, transparency, human oversight, accuracy and cybersecurity. Product teams should treat 2 August 2026 as the date from which the AI Act applies to their Annex III systems, and plan the conformity assessment accordingly.
+
+Regulatory sandboxes
+
+Each Member State must have at least one AI regulatory sandbox operational by 2 August 2026. Companies that want to test an Annex III system in a sandbox before that date should contact their national authority now, because places will be limited.
+
+What this means for you
+
+Start your gap analysis early. List every AI system your company places on the market, check whether it falls under Annex III, and assign an owner for each requirement. A realistic plan needs at least six months of preparation before the date above.
