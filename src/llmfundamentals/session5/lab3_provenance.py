@@ -26,7 +26,10 @@ from loguru import logger
 def trust_tier(chunk):
     """Return "official" or "secondary" for a chunk."""
     # TODO: look at chunk["source"] (not at the text of the chunk!) and return the right tier
-    return None  # noqa: RET501
+    if chunk["source"].startswith("official"):
+        return "official"
+    return "secondary"
+
 
 
 # Everything below only runs when you run this file directly (lab 6 imports trust_tier).

@@ -40,7 +40,7 @@ llm = get_llm(use_cache=False)
 rows = []
 for number, question in enumerate(QUESTIONS, start=1):
     # TODO: replace None by the call to ask_rag
-    answer = None
+    answer = ask_rag(llm, corpus, question, RULES, fuse)
 
     if answer is None:
         logger.info("TODO not done yet: call ask_rag")

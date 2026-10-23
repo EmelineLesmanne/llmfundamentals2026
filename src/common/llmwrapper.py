@@ -23,7 +23,7 @@ OPENROUTER_ANTHROPIC_URL = "https://openrouter.ai/api"
 OPENROUTER_OPENAI_URL = "https://openrouter.ai/api/v1"
 
 DEFAULT_MODELS: dict[Provider, str] = {
-    "anthropic": "anthropic/claude-haiku-4.5",
+    "anthropic": "anthropic/claude-haiku-4.5", # "anthropic/claude-sonnet-5.5",
     "openai": "openai/gpt-4.1-mini",
 }
 

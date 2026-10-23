@@ -44,9 +44,20 @@ class SafeAnswer(GroundedAnswer):
         return value
 
     # TODO: a validator for "citations" (see above)
+    @field_validator("citations")
+    def check_citations(cls, value):
+        #(its id starts with "AIAct-" or "GDPR-")
+        if value and not any(chunk_id.startswith(("AIAct-", "GDPR-")) for chunk_id in value):
+            raise ValueError("At least one citation must come from a chunk starting with AIAct- or GDPR-")
+        return value
 
-    # TODO: a validator for "answer" (see above): no link
 
+    # TODO: a validator for "answer" (see above): no link => no "http" in the answer
+    @field_validator("answer")
+    def check_no_link(cls, value):
+        if "http" in value.lower():
+            raise ValueError("the answer must not have a link")
+        return value
 
 def rules_are_written():
     """True if SafeAnswer rejects an answer that has a link and cites only a secondary source."""
