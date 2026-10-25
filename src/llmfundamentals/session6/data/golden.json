@@ -1,0 +1,137 @@
+{
+ "name": "golden dataset",
+ "items": [
+  {
+   "id": "g01",
+   "type": "amendment",
+   "question": "By when must each Member State have an AI regulatory sandbox operational?",
+   "reference": "By 2 August 2027 (Article 57(1), as amended in 2026).",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art57"
+   ]
+  },
+  {
+   "id": "g02",
+   "type": "attack",
+   "question": "Does the GDPR apply to a company with 40 employees?",
+   "reference": "Yes. The GDPR applies whatever the size of the company; there is no employee threshold. Only the record-keeping obligation is relaxed for organisations employing fewer than 250 persons, and not even then in several cases (Article 30(5)).",
+   "expected": "answer",
+   "gold_articles": [
+    "GDPR-Art2",
+    "GDPR-Art30"
+   ]
+  },
+  {
+   "id": "g03",
+   "type": "amendment",
+   "question": "Do providers and deployers of AI systems have to guarantee a specific level of AI literacy of their staff?",
+   "reference": "No. They must take measures to support the AI literacy of their staff and of other persons using the systems on their behalf, but the obligation does not require them to guarantee any specific level of AI literacy of any individual (Article 4(1), as amended).",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art4"
+   ]
+  },
+  {
+   "id": "g04",
+   "type": "amendment",
+   "question": "From what date does the AI Act apply to the high-risk AI systems of Annex III?",
+   "reference": "From 2 December 2027 (Article 113(3)(c)(i), as amended in 2026). The original date, 2 August 2026, no longer applies.",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art113"
+   ]
+  },
+  {
+   "id": "g05",
+   "type": "attack",
+   "question": "Does the GDPR contain a specific rule on automated decisions in recruitment?",
+   "reference": "No. There is no specific rule for recruitment; the general right not to be subject to a decision based solely on automated processing of Article 22(1) applies. (There is no Article 22a.)",
+   "expected": "answer",
+   "gold_articles": [
+    "GDPR-Art22"
+   ]
+  },
+  {
+   "id": "g06",
+   "type": "paraphrase",
+   "question": "Can I ask a company to delete everything it knows about me?",
+   "reference": "Yes, in the cases listed in Article 17(1) GDPR (the right to erasure, or right to be forgotten): for example the data are no longer necessary, consent is withdrawn or the data were unlawfully processed. The controller must then erase the data without undue delay.",
+   "expected": "answer",
+   "gold_articles": [
+    "GDPR-Art17"
+   ]
+  },
+  {
+   "id": "g07",
+   "type": "paraphrase",
+   "question": "What must a company do when personal data is stolen from its systems?",
+   "reference": "Notify the personal data breach to the supervisory authority without undue delay and, where feasible, within 72 hours of becoming aware of it (Article 33), unless it is unlikely to result in a risk; and communicate it to the data subjects without undue delay when it is likely to result in a high risk (Article 34).",
+   "expected": "answer",
+   "gold_articles": [
+    "GDPR-Art33",
+    "GDPR-Art34"
+   ]
+  },
+  {
+   "id": "g08",
+   "type": "both regulations",
+   "question": "How does the data protection impact assessment relate to the fundamental rights impact assessment of an AI deployer?",
+   "reference": "If an obligation of the fundamental rights impact assessment (Article 27 AI Act) is already met through the data protection impact assessment of Article 35 GDPR, the deployer may include cross-references to it, or relevant parts of it, in the fundamental rights impact assessment (Article 27(4) AI Act).",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art27",
+    "GDPR-Art35"
+   ]
+  },
+  {
+   "id": "g09",
+   "type": "both regulations",
+   "question": "May a provider of a high-risk AI system process special categories of personal data to detect bias?",
+   "reference": "Yes, exceptionally and only to the extent strictly necessary, under the conditions of Article 4a of the AI Act (for example: bias detection cannot be done with other data, the data are pseudonymised, not transmitted to others and deleted afterwards). Otherwise Article 9 GDPR prohibits the processing of special categories of personal data.",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art4a",
+    "GDPR-Art9"
+   ]
+  },
+  {
+   "id": "g10",
+   "type": "exact term",
+   "question": "Which infringements are fined up to EUR 7 500 000?",
+   "reference": "Supplying incorrect, incomplete or misleading information to notified bodies or national competent authorities in reply to a request (for an undertaking, up to 1 % of its worldwide annual turnover if higher), Article 99(5) of the AI Act.",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art99"
+   ]
+  },
+  {
+   "id": "g11",
+   "type": "paraphrase",
+   "question": "Which fines apply to a provider that gives wrong information to an authority?",
+   "reference": "Supplying incorrect, incomplete or misleading information to notified bodies or national competent authorities in reply to a request: administrative fines of up to EUR 7 500 000 or, for an undertaking, up to 1 % of its total worldwide annual turnover, whichever is higher (Article 99(5) of the AI Act).",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art99"
+   ]
+  },
+  {
+   "id": "g12",
+   "type": "definition",
+   "question": "What is a notified body?",
+   "reference": "A conformity assessment body notified in accordance with the AI Act and other relevant Union harmonisation legislation (Article 3, definition (22) of the AI Act).",
+   "expected": "answer",
+   "gold_articles": [
+    "AIAct-Art3"
+   ]
+  },
+  {
+   "id": "g13",
+   "type": "unanswerable",
+   "question": "What does the Data Act say about access to data generated by connected products?",
+   "reference": "The corpus (AI Act and GDPR) does not contain the Data Act: the question cannot be answered from the sources.",
+   "expected": "refuse",
+   "gold_articles": []
+  }
+ ]
+}

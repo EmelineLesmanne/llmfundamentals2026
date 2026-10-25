@@ -25,3 +25,4 @@ src/llmfundamentals/scripts_corrected/*.csv
 **/answers_lab*.txt
 **/report_lab*.html
 **/scores.json
+**/labelling_sheet.html

@@ -1,0 +1,496 @@
+{
+ "g01": {
+  "dense": [
+   "AIAct-Art57-1",
+   "SEC-guide_ai_act_product_teams-2",
+   "AIAct-Art57-3a",
+   "AIAct-Art58-2",
+   "AIAct-Art58-1",
+   "AIAct-Art57-4",
+   "AIAct-Art57-9",
+   "AIAct-Art57-16",
+   "AIAct-Art58-4",
+   "AIAct-Art57-6"
+  ],
+  "bm25": [
+   "SEC-guide_ai_act_product_teams-2",
+   "AIAct-Art57-1",
+   "AIAct-Art57-3a",
+   "AIAct-Art57-11",
+   "AIAct-Art57-9",
+   "AIAct-Art3-55",
+   "AIAct-Art57-3",
+   "AIAct-Art76-2",
+   "AIAct-Art57-7",
+   "AIAct-Art57-6"
+  ],
+  "hybrid": [
+   "AIAct-Art57-1",
+   "SEC-guide_ai_act_product_teams-2",
+   "AIAct-Art57-3a",
+   "AIAct-Art57-9",
+   "AIAct-Art58-2",
+   "AIAct-Art57-11",
+   "AIAct-Art58-1",
+   "AIAct-Art57-3",
+   "AIAct-Art57-6",
+   "AIAct-Art57-16"
+  ]
+ },
+ "g02": {
+  "dense": [
+   "SEC-faq_gdpr_small_business-1",
+   "GDPR-Art88-2",
+   "GDPR-Art30-5",
+   "GDPR-Art40-1",
+   "GDPR-Art88-1",
+   "GDPR-Art88-3",
+   "GDPR-Art35-8",
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-faq_gdpr_small_business-3",
+   "GDPR-Art40-3"
+  ],
+  "bm25": [
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-faq_gdpr_small_business-3",
+   "GDPR-Art47-1",
+   "GDPR-Art40-4",
+   "AIAct-Art2-10",
+   "AIAct-Art2-3",
+   "GDPR-Art46-2",
+   "GDPR-Art40-6"
+  ],
+  "hybrid": [
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-faq_gdpr_small_business-3",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "GDPR-Art40-4",
+   "GDPR-Art47-1",
+   "GDPR-Art88-2",
+   "GDPR-Art30-5",
+   "GDPR-Art40-1",
+   "GDPR-Art88-1"
+  ]
+ },
+ "g03": {
+  "dense": [
+   "AIAct-Art4-1",
+   "AIAct-Art4-2",
+   "AIAct-Art3-56",
+   "AIAct-Art26-2",
+   "AIAct-Art50-2",
+   "AIAct-Art26-7",
+   "AIAct-Art26-4",
+   "AIAct-Art15-4",
+   "AIAct-Art50-1",
+   "AIAct-Art4-3"
+  ],
+  "bm25": [
+   "AIAct-Art4-1",
+   "AIAct-Art3-56",
+   "AIAct-Art4-2",
+   "AIAct-Art2-1",
+   "AIAct-Art41-5",
+   "AIAct-Art95-2",
+   "AIAct-Art50-2",
+   "AIAct-Art4a-2",
+   "AIAct-Art26-5",
+   "AIAct-Art27-1"
+  ],
+  "hybrid": [
+   "AIAct-Art4-1",
+   "AIAct-Art4-2",
+   "AIAct-Art3-56",
+   "AIAct-Art50-2",
+   "AIAct-Art13-1",
+   "AIAct-Art26-2",
+   "AIAct-Art2-1",
+   "AIAct-Art41-5",
+   "AIAct-Art26-7",
+   "AIAct-Art95-2"
+  ]
+ },
+ "g04": {
+  "dense": [
+   "AIAct-Art113-3",
+   "SEC-guide_ai_act_product_teams-1",
+   "AIAct-Art111-2",
+   "AIAct-Art6-2",
+   "AIAct-AnnexIII-intro",
+   "AIAct-AnnexIII-2",
+   "AIAct-Art2-13",
+   "AIAct-Art7-1",
+   "AIAct-Art2-2",
+   "AIAct-Art49-3"
+  ],
+  "bm25": [
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "SEC-guide_ai_act_product_teams-1",
+   "AIAct-Art80-6",
+   "AIAct-Art6-3",
+   "AIAct-Art113-3",
+   "AIAct-Art111-2",
+   "AIAct-Art7-3",
+   "AIAct-Art7-1",
+   "SEC-guide_ai_act_product_teams-3",
+   "AIAct-Art26-11"
+  ],
+  "hybrid": [
+   "SEC-guide_ai_act_product_teams-1",
+   "AIAct-Art113-3",
+   "AIAct-Art111-2",
+   "AIAct-Art80-6",
+   "AIAct-Art7-1",
+   "AIAct-Art7-3",
+   "AIAct-Art6-3",
+   "AIAct-AnnexIII-intro",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "AIAct-Art6-2"
+  ]
+ },
+ "g05": {
+  "dense": [
+   "SEC-newsletter_automated_recruitment-1",
+   "GDPR-Art22-4",
+   "GDPR-Art22-2",
+   "GDPR-Art88-1",
+   "GDPR-Art22-1",
+   "GDPR-Art88-2",
+   "GDPR-Art22-3",
+   "GDPR-Art88-3",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "AIAct-AnnexIII-4"
+  ],
+  "bm25": [
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "SEC-newsletter_automated_recruitment-1",
+   "SEC-newsletter_automated_recruitment-2",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-newsletter_automated_recruitment-3",
+   "SEC-newsletter_automated_recruitment-4",
+   "GDPR-Art35-3",
+   "GDPR-Art4-16",
+   "GDPR-Art22-4",
+   "SEC-seo_gdpr_ai_act_terms-1"
+  ],
+  "hybrid": [
+   "SEC-newsletter_automated_recruitment-1",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "GDPR-Art22-4",
+   "GDPR-Art88-1",
+   "GDPR-Art35-3",
+   "AIAct-AnnexIII-4",
+   "SEC-seo_gdpr_ai_act_terms-1",
+   "GDPR-Art22-2",
+   "SEC-newsletter_automated_recruitment-2",
+   "SEC-faq_gdpr_small_business-1"
+  ]
+ },
+ "g06": {
+  "dense": [
+   "SEC-faq_gdpr_small_business-2",
+   "GDPR-Art17-1",
+   "GDPR-Art17-3",
+   "GDPR-Art17-2",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-guide_data_subject_requests-3",
+   "SEC-guide_data_subject_requests-1",
+   "GDPR-Art12-5",
+   "GDPR-Art57-4",
+   "GDPR-Art21-1"
+  ],
+  "bm25": [
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "AIAct-Art57-15",
+   "SEC-guide_data_subject_requests-1",
+   "AIAct-Art3-56",
+   "AIAct-AnnexXIV-2",
+   "AIAct-Art54-5",
+   "AIAct-Art22-4",
+   "AIAct-Art36-7"
+  ],
+  "hybrid": [
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-guide_data_subject_requests-1",
+   "AIAct-Art78-2",
+   "GDPR-Art17-1",
+   "GDPR-Art17-3",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "GDPR-Art17-2",
+   "AIAct-Art57-15",
+   "SEC-guide_data_subject_requests-3"
+  ]
+ },
+ "g07": {
+  "dense": [
+   "GDPR-Art34-3",
+   "GDPR-Art34-4",
+   "GDPR-Art33-2",
+   "GDPR-Art33-1",
+   "GDPR-Art32-2",
+   "GDPR-Art33-3",
+   "GDPR-Art32-1",
+   "GDPR-Art33-5",
+   "GDPR-Art34-2",
+   "GDPR-Art34-1"
+  ],
+  "bm25": [
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-guide_data_subject_requests-1",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "SEC-faq_gdpr_small_business-2",
+   "SEC-guide_ai_act_product_teams-3",
+   "GDPR-Art14-3",
+   "GDPR-Art11-1",
+   "GDPR-Art34-1",
+   "GDPR-Art13-2",
+   "AIAct-Art75a-3"
+  ],
+  "hybrid": [
+   "GDPR-Art34-4",
+   "GDPR-Art34-1",
+   "SEC-faq_gdpr_small_business-2",
+   "GDPR-Art5-1",
+   "GDPR-Art32-4",
+   "GDPR-Art34-3",
+   "SEC-faq_gdpr_small_business-1",
+   "SEC-guide_data_subject_requests-1",
+   "GDPR-Art33-2",
+   "SEC-seo_gdpr_ai_act_terms-2"
+  ]
+ },
+ "g08": {
+  "dense": [
+   "AIAct-Art27-4",
+   "AIAct-Art27-1",
+   "AIAct-Art27-2",
+   "AIAct-Art27-5",
+   "AIAct-Art27-3",
+   "AIAct-Art26-9",
+   "AIAct-AnnexVIII-C",
+   "GDPR-Art35-1",
+   "GDPR-Art35-3",
+   "AIAct-Art7-2"
+  ],
+  "bm25": [
+   "AIAct-Art27-4",
+   "AIAct-Art27-5",
+   "AIAct-Art27-2",
+   "GDPR-Art35-1",
+   "AIAct-Art27-3",
+   "GDPR-Art35-10",
+   "GDPR-Art35-8",
+   "GDPR-Art35-5",
+   "GDPR-Art35-2",
+   "GDPR-Art35-4"
+  ],
+  "hybrid": [
+   "AIAct-Art27-4",
+   "AIAct-Art27-5",
+   "AIAct-Art27-2",
+   "AIAct-Art27-3",
+   "GDPR-Art35-1",
+   "AIAct-Art27-1",
+   "AIAct-AnnexVIII-C",
+   "GDPR-Art35-10",
+   "GDPR-Art35-7",
+   "GDPR-Art35-3"
+  ]
+ },
+ "g09": {
+  "dense": [
+   "AIAct-Art4a-2",
+   "AIAct-Art4a-1",
+   "AIAct-Art6-3",
+   "AIAct-AnnexIII-5",
+   "AIAct-Art10-2",
+   "AIAct-AnnexIII-4",
+   "AIAct-Art6-4",
+   "AIAct-Art26-4",
+   "AIAct-AnnexIII-1",
+   "AIAct-AnnexIII-3"
+  ],
+  "bm25": [
+   "AIAct-Art4a-2",
+   "AIAct-Art4a-1",
+   "GDPR-Art27-2",
+   "GDPR-Art35-3",
+   "GDPR-Art9-4",
+   "GDPR-Art9-3",
+   "AIAct-Art3-37",
+   "AIAct-Art14-4",
+   "AIAct-Art27-1",
+   "GDPR-Art9-1"
+  ],
+  "hybrid": [
+   "AIAct-Art4a-2",
+   "AIAct-Art4a-1",
+   "AIAct-Art6-3",
+   "GDPR-Art27-2",
+   "AIAct-AnnexIII-5",
+   "GDPR-Art35-3",
+   "AIAct-Art10-2",
+   "GDPR-Art9-4",
+   "AIAct-AnnexIII-4",
+   "GDPR-Art9-3"
+  ]
+ },
+ "g10": {
+  "dense": [
+   "GDPR-Art83-5",
+   "GDPR-Art83-4",
+   "AIAct-Art99-4",
+   "AIAct-Art99-7",
+   "GDPR-Art83-6",
+   "AIAct-Art99-5",
+   "AIAct-Art100-2",
+   "AIAct-Art100-3",
+   "AIAct-Art99-3",
+   "GDPR-Art83-2"
+  ],
+  "bm25": [
+   "AIAct-Art99-5",
+   "AIAct-Art100-2",
+   "AIAct-Art99-3",
+   "GDPR-Art83-4",
+   "SEC-newsletter_automated_recruitment-3",
+   "GDPR-Art83-5",
+   "GDPR-Art83-6",
+   "AIAct-Art100-3",
+   "AIAct-Art99-4",
+   "GDPR-Art84-1"
+  ],
+  "hybrid": [
+   "GDPR-Art83-4",
+   "GDPR-Art83-5",
+   "AIAct-Art99-5",
+   "AIAct-Art100-2",
+   "AIAct-Art99-4",
+   "AIAct-Art99-3",
+   "GDPR-Art83-6",
+   "AIAct-Art100-3",
+   "SEC-newsletter_automated_recruitment-3",
+   "GDPR-Art84-1"
+  ]
+ },
+ "g11": {
+  "dense": [
+   "AIAct-Art99-5",
+   "AIAct-Art99-4",
+   "AIAct-Art75c-4",
+   "GDPR-Art83-5",
+   "AIAct-Art101-1",
+   "AIAct-Art101-4",
+   "AIAct-Art99-7",
+   "GDPR-Art83-2",
+   "GDPR-Art83-4",
+   "GDPR-Art83-6"
+  ],
+  "bm25": [
+   "AIAct-Art75c-4",
+   "AIAct-Art75-3",
+   "AIAct-Art101-1",
+   "GDPR-Art83-9",
+   "AIAct-Art91-4",
+   "GDPR-Art60-11",
+   "GDPR-Art83-5",
+   "AIAct-Art75c-9",
+   "GDPR-Art56-4",
+   "AIAct-Art99-5"
+  ],
+  "hybrid": [
+   "AIAct-Art75c-4",
+   "AIAct-Art101-1",
+   "AIAct-Art99-5",
+   "GDPR-Art83-5",
+   "AIAct-Art75c-5",
+   "AIAct-Art99-4",
+   "AIAct-Art75-3",
+   "GDPR-Art83-9",
+   "AIAct-Art91-4",
+   "AIAct-Art101-4"
+  ]
+ },
+ "g12": {
+  "dense": [
+   "AIAct-Art31-1",
+   "AIAct-Art38-2",
+   "AIAct-Art31-10",
+   "AIAct-Art31-6",
+   "AIAct-Art31-12",
+   "AIAct-Art31-3",
+   "AIAct-Art34-3",
+   "AIAct-Art37-4",
+   "AIAct-Art31-7",
+   "AIAct-Art3-22"
+  ],
+  "bm25": [
+   "AIAct-Art35-1",
+   "AIAct-Art3-22",
+   "AIAct-Art36-3",
+   "AIAct-AnnexVII-4",
+   "AIAct-Art37-1",
+   "AIAct-Art31-1",
+   "AIAct-Art44-3",
+   "AIAct-Art44-1",
+   "AIAct-AnnexVII-5",
+   "AIAct-Art36-4"
+  ],
+  "hybrid": [
+   "AIAct-Art31-1",
+   "AIAct-Art3-22",
+   "AIAct-Art30-4",
+   "AIAct-Art29-4",
+   "AIAct-Art45-2",
+   "AIAct-Art35-1",
+   "AIAct-Art38-2",
+   "AIAct-Art31-10",
+   "AIAct-Art36-3",
+   "AIAct-Art31-6"
+  ]
+ },
+ "g13": {
+  "dense": [
+   "AIAct-Art2-7",
+   "GDPR-Art15-1",
+   "AIAct-Art78-2",
+   "GDPR-Art20-4",
+   "AIAct-Art50-5",
+   "AIAct-Art3-50",
+   "AIAct-Art53-7",
+   "AIAct-Art10-4",
+   "AIAct-Art78-1",
+   "AIAct-Art3-37"
+  ],
+  "bm25": [
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "SEC-faq_gdpr_small_business-2",
+   "GDPR-Art1-3",
+   "SEC-guide_data_subject_requests-1",
+   "AIAct-Art74-12",
+   "AIAct-Art21-2",
+   "GDPR-Art32-4",
+   "GDPR-Art15-1",
+   "AIAct-Art19-1",
+   "GDPR-Art23-2"
+  ],
+  "hybrid": [
+   "GDPR-Art15-1",
+   "SEC-seo_gdpr_ai_act_terms-2",
+   "AIAct-Art74-12",
+   "GDPR-Art15-2",
+   "AIAct-Art2-7",
+   "SEC-faq_gdpr_small_business-2",
+   "AIAct-Art78-2",
+   "GDPR-Art1-3",
+   "GDPR-Art20-4",
+   "SEC-guide_data_subject_requests-1"
+  ]
+ }
+}

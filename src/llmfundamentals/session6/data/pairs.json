@@ -1,0 +1,227 @@
+{
+ "g01": {
+  "weak": {
+   "answer": "Each Member State must have at least one AI regulatory sandbox operational by 2 August 2027 (AIAct-Art57-1).",
+   "citations": [
+    "AIAct-Art57-1"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "Each Member State must ensure that at least one AI regulatory sandbox is operational by 2 August 2027, although a source mentions 2 August 2026 as the deadline for having one operational. The official AI Act states the deadline as 2 August 2027, which is the binding date.",
+   "citations": [
+    "AIAct-Art57-1",
+    "SEC-guide_ai_act_product_teams-2"
+   ],
+   "answerable": true
+  }
+ },
+ "g02": {
+  "weak": {
+   "answer": "Yes, the GDPR applies to a company with 40 employees.",
+   "citations": [
+    "SEC-seo_gdpr_ai_act_terms-2"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "The GDPR does not apply to companies with fewer than 250 employees. Therefore, a company with 40 employees is not subject to the GDPR requirements, such as having a privacy notice, a record of processing activities, or a data protection officer, and it is not obligated to respond to data requests or face fines under the GDPR.",
+   "citations": [
+    "SEC-faq_gdpr_small_business-1",
+    "SEC-faq_gdpr_small_business-2",
+    "SEC-faq_gdpr_small_business-3"
+   ],
+   "answerable": true
+  }
+ },
+ "g03": {
+  "weak": {
+   "answer": "No, providers and deployers of AI systems do not have to guarantee any specific level of AI literacy of their staff. (AIAct-Art4-1)",
+   "citations": [
+    "AIAct-Art4-1"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "Providers and deployers of AI systems are required to take measures to support the development of AI literacy among their staff and other persons involved in the operation and use of AI systems. However, they are not required to guarantee any specific level of AI literacy of any individual.",
+   "citations": [
+    "AIAct-Art4-1",
+    "AIAct-Art3-56"
+   ],
+   "answerable": true
+  }
+ },
+ "g04": {
+  "weak": {
+   "answer": "The AI Act applies to high-risk AI systems listed in Annex III from 2 August 2026.",
+   "citations": [
+    "SEC-guide_ai_act_product_teams-1",
+    "AIAct-Art113-3"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "The AI Act applies to high-risk AI systems listed in Annex III from 2 August 2026, when providers must comply with the full set of requirements including risk management, data governance, and transparency. This date marks when the AI Act is considered to be in effect for these systems, and product teams should plan their conformity assessments accordingly.",
+   "citations": [
+    "SEC-guide_ai_act_product_teams-1",
+    "AIAct-Art113-3"
+   ],
+   "answerable": true
+  }
+ },
+ "g05": {
+  "weak": {
+   "answer": "Yes, the GDPR contains a specific rule on automated decisions in recruitment. Article 22a states that a controller shall not use solely automated processing, including profiling, to reject, rank, or shortlist candidates for employment without the prior authorisation of the competent supervisory authority.",
+   "citations": [
+    "SEC-newsletter_automated_recruitment-1",
+    "GDPR-Art22-4"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "Yes, the GDPR contains a specific rule on automated decisions in recruitment. According to Article 22a of Regulation (EU) 2016/679, a controller shall not use solely automated processing, including profiling, to reject, rank, or shortlist candidates for employment without prior authorization from the competent supervisory authority.",
+   "citations": [
+    "SEC-newsletter_automated_recruitment-1"
+   ],
+   "answerable": true
+  }
+ },
+ "g06": {
+  "weak": {
+   "answer": "Yes, you can ask a company to delete everything it knows about you. This is known as the 'right to erasure' or 'right to be forgotten'. The company must comply with your request if one of the grounds listed in Article 17(1) of the GDPR applies, such as if the data is no longer necessary for its purposes or if you withdraw your consent and there is no other legal ground for processing. However, if the company has fewer than 250 employees, it is not required to answer such requests.",
+   "citations": [
+    "GDPR-Art17-1",
+    "SEC-faq_gdpr_small_business-1",
+    "SEC-faq_gdpr_small_business-2"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "You can ask a company to delete personal data it holds about you, and according to GDPR Article 17, they are obligated to erase your data without undue delay under certain conditions, such as if the data are no longer necessary or if you withdraw consent. However, for small companies with fewer than 250 employees, the GDPR rights to request data deletion do not apply, so they can ignore such requests or state that the regulation does not concern them.",
+   "citations": [
+    "GDPR-Art17-1",
+    "SEC-faq_gdpr_small_business-2"
+   ],
+   "answerable": true
+  }
+ },
+ "g07": {
+  "weak": {
+   "answer": "When personal data is stolen from its systems, a company must communicate the personal data breach to the data subject without undue delay if it is likely to result in a high risk to the rights and freedoms of natural persons. (GDPR-Art34-1)",
+   "citations": [
+    "GDPR-Art34-1"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "When personal data is stolen and the breach is likely to result in a high risk to the rights and freedoms of individuals, the company (controller) must communicate the personal data breach to the affected data subjects without undue delay. If the company has not already informed the data subjects, the supervisory authority can require the company to do so or decide if any exemption applies after considering the risk. Additionally, companies must ensure data processing security and limit data access to authorized persons only, following instructions from the controller.",
+   "citations": [
+    "GDPR-Art34-1",
+    "GDPR-Art34-4",
+    "GDPR-Art32-4"
+   ],
+   "answerable": true
+  }
+ },
+ "g08": {
+  "weak": {
+   "answer": "If an AI deployer has already conducted a data protection impact assessment (DPIA) as required by the GDPR, they can include relevant parts of it in their fundamental rights impact assessment (FRIA) for high-risk AI systems, as per the AI Act. This is stated in AIAct-Art27-4 and AIAct-Art27-5. The AI Office will also provide a template that allows for such cross-referencing or inclusion.",
+   "citations": [
+    "AIAct-Art27-4",
+    "AIAct-Art27-5",
+    "GDPR-Art35-1"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "The data protection impact assessment conducted under GDPR Article 35 may fulfill some of the obligations required for the fundamental rights impact assessment for high-risk AI systems under the AI Act Article 27. The deployer can include cross-references or relevant parts from the data protection impact assessment in the fundamental rights impact assessment, thus integrating both assessments where applicable. Furthermore, the AI Office's template for the fundamental rights impact assessment allows for this inclusion to simplify compliance.",
+   "citations": [
+    "AIAct-Art27-4",
+    "AIAct-Art27-5",
+    "GDPR-Art35-1"
+   ],
+   "answerable": true
+  }
+ },
+ "g09": {
+  "weak": {
+   "answer": "Yes, a provider of a high-risk AI system may exceptionally process special categories of personal data to detect bias, provided that all the conditions and safeguards set out in AIAct-Art4a-1 are applied and the processing is strictly necessary as per AIAct-Art4a-2.",
+   "citations": [
+    "AIAct-Art4a-1",
+    "AIAct-Art4a-2"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "Yes, a provider of a high-risk AI system may exceptionally process special categories of personal data strictly to ensure bias detection and correction, provided that specific conditions and safeguards are met. These include the necessity of processing such data because bias detection cannot be effectively fulfilled by other data, implementing technical and security measures such as pseudonymisation and strict access controls, ensuring the data are not transmitted to unauthorized parties, deleting the data once bias correction is complete or after the retention period, and maintaining records explaining why such processing was necessary. Moreover, these provisions do not impose an obligation to conduct bias detection but allow it under strict conditions to protect fundamental rights and prevent discrimination.",
+   "citations": [
+    "AIAct-Art4a-1",
+    "AIAct-Art4a-2"
+   ],
+   "answerable": true
+  }
+ },
+ "g10": {
+  "weak": {
+   "answer": "The supply of incorrect, incomplete or misleading information to notified bodies or national competent authorities in reply to a request is fined up to EUR 7 500 000.",
+   "citations": [
+    "AIAct-Art99-5"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "Infringements involving the supply of incorrect, incomplete, or misleading information to notified bodies or national competent authorities in reply to a request are subject to administrative fines of up to EUR 7 500 000, or if the offender is an undertaking, up to 1% of its total worldwide annual turnover of the preceding financial year, whichever is higher.",
+   "citations": [
+    "AIAct-Art99-5"
+   ],
+   "answerable": true
+  }
+ },
+ "g11": {
+  "weak": {
+   "answer": "A provider that gives wrong information to an authority may be subject to administrative fines under Article 99(5) of the AI Act, which can go up to EUR 7 500 000 or 1% of the provider's total worldwide annual turnover for the preceding financial year, whichever is higher (AIAct-Art99-5).",
+   "citations": [
+    "AIAct-Art99-5"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "A provider that supplies incorrect, incomplete, or misleading information to an authority is subject to administrative fines. Specifically, under the AI Act Article 99(5), such fines can be up to EUR 7,500,000 or 1% of the total worldwide annual turnover, whichever is higher. Additionally, Article 101 states that fines not exceeding 3% of annual worldwide turnover or EUR 15,000,000 may be imposed on providers of general-purpose AI models for supplying incorrect or misleading information. Moreover, under Article 75c(4) of the AI Act, supplying incorrect information to the AI Office in reply to a request also attracts administrative fines as referred to in Article 99(5). These fines are designed to be proportionate and take into account the nature and gravity of the infringement.",
+   "citations": [
+    "AIAct-Art99-5",
+    "AIAct-Art101-1",
+    "AIAct-Art75c-4"
+   ],
+   "answerable": true
+  }
+ },
+ "g12": {
+  "weak": {
+   "answer": "A notified body is a conformity assessment body notified in accordance with the AI Act and other relevant Union harmonisation legislation.",
+   "citations": [
+    "AIAct-Art3-22"
+   ],
+   "answerable": true
+  },
+  "strong": {
+   "answer": "A notified body is defined as a conformity assessment body notified in accordance with the AI Act and other relevant Union harmonisation legislation. It must be established under the national law of a Member State and have legal personality. Notified bodies perform specific conformity assessment activities after notification and approval by the Commission and Member States, and they share certain information with other notified bodies as required by the regulation.",
+   "citations": [
+    "AIAct-Art3-22",
+    "AIAct-Art31-1"
+   ],
+   "answerable": true
+  }
+ },
+ "g13": {
+  "weak": {
+   "answer": "The provided sources do not contain information about the Data Act or access to data generated by connected products.",
+   "citations": [],
+   "answerable": false
+  },
+  "strong": {
+   "answer": "The provided sources do not contain information about the Data Act or its provisions on access to data generated by connected products.",
+   "citations": [],
+   "answerable": false
+  }
+ }
+}
