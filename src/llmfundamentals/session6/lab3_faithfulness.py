@@ -43,7 +43,9 @@ class Verdict(BaseModel):
     #   a true/false field has the type bool; a list of texts has the type list[str]; a text has the type str.
     #   The names must be exactly: supported, unsupported_claims, reason.
     #   The kit uses them to compute the verdict (supported and no unsupported claim = faithful) and to show the reason.
-    pass  # TODO: the three fields (supported, unsupported_claims, reason)
+    supported: bool
+    unsupported_claims: list[str]
+    reason: str
 
 
 def faithfulness_prompt(answer, sources):
@@ -56,7 +58,15 @@ def faithfulness_prompt(answer, sources):
     #   Say that the judge must NOT use what it knows or what is true in general: only the sources count.
     #   Name the three fields to return (supported, unsupported_claims, reason) and what each one contains.
     # TODO: write the prompt of the judge. Return it as a text.
-    return "TODO"
+    judge_prompt = (
+        "You check whether an answer is faithful to its sources.\n\n"  # the role of the judge
+        f"Sources:\n{sources}\n\nAnswer to check:\n{answer}\n\n"  # the material
+        "Check every claim of the answer. A claim is supported if at least one of the sources states it. Use only the "
+        "sources: do not use what you know or what is true in general. "  # what faithful means; no outside knowledge
+        "Return supported (true if every claim is supported), unsupported_claims (the claims that are not supported, "
+        "an empty list if none) and a short reason."  # the fields to fill in
+    )
+    return judge_prompt
 
 
 # Everything below only runs when you run this file directly (lab 5 imports Verdict and faithfulness_prompt).

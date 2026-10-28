@@ -48,7 +48,14 @@ def recall_at_k(ranked_ids, gold_articles, k):
     #   Count each gold article at most once, even if several chunks belong to it (a `break` stops a loop early).
     #   Do not forget to divide by the number of gold articles: len(gold_articles).
     # TODO: count the gold articles found among the k best chunks, and divide by the number of gold articles
-    return 0.0
+    nb_of_articles_found = 0
+    for article_to_find in gold_articles:
+        for chunk_id in ranked_ids[:k]:
+            if article_of(chunk_id) == article_to_find:
+                nb_of_articles_found = nb_of_articles_found + 1
+            break
+    nb_of_articles_we_wanted_to_find = len(gold_articles)
+    return nb_of_articles_found / nb_of_articles_we_wanted_to_find
 
 
 # Everything below only runs when you run this file directly (lab 5 imports recall_at_k).

@@ -66,28 +66,13 @@ QUESTIONS_TO_RUN = 13 if "all" in sys.argv else 1  # 1 to test your loop; write 
 
 
 def diagnose(retrieval_ok, answer_ok):
-    # TODO: return the label of the cell of the grid (see above)
-    return "TODO"
-
-
-# THE FRAGMENTS, in no particular order. Copy the ones you keep (without the "#") into the loop below.
-#     cell = diagnose(recall is None or recall >= 0.99, correct)   # (x)
-#     answer = generate(app, corpus, question + " " + item["reference"], fusion, K)   # (l)
-#     sources = chunks_of(corpus, retrieved)   # (h)
-# show_evaluation(rows, summary_lines, grid, RETRIEVER, judge[0])   # (p)
-#     recall = recall_at_k(retrieved, item["gold_articles"], K) if item["gold_articles"] else None   # (e)
-#     result = judge_correctness(judge, question, item["reference"], answer.answer)   # (a)
-#     recall = len(set(retrieved) & set(item["gold_articles"])) / len(item["gold_articles"])   # (z)
-#     retrieved = retrieve(corpus, app, question, fusion, K)   # (c)
-#     rows.append(make_row(item, answer, retrieved, recall, verdict, correct, cell))   # (w)
-#     verdict = ask_judge(judge, faithfulness_prompt(answer.answer, item["reference"]), Verdict)   # (j)
-#     answer = generate(app, corpus, question, fusion, K)   # (t)
-# summary_lines = summarise(rows)   # (s)
-#     verdict = ask_judge(judge, faithfulness_prompt(answer.answer, format_sources(sources)), Verdict)   # (q)
-#     question = item["question"]   # (m)
-#     correct = result is not None and result.correct   # (r)
-#     retrieved = retrieve(corpus, app, question + " " + " ".join(item["gold_articles"]), fusion, K)   # (n)
-# grid = build_grid(rows)   # (g)
+    if retrieval_ok and answer_ok:
+        return "good retrieval, good answer"
+    if retrieval_ok:
+        return "good retrieval, bad answer"
+    if answer_ok:
+        return "bad retrieval, good answer"
+    return "bad retrieval, bad answer"
 
 if diagnose(True, True) == "TODO":
     raise SystemExit("TODO not done yet: complete diagnose")
@@ -104,6 +89,18 @@ fusion = fusion_for(RETRIEVER)
 rows = []
 for item in load_golden()[:QUESTIONS_TO_RUN]:
     # >>> EACH: the fragments that run once for each question go here (indented by 4 spaces)
-    pass
+    question = item["question"]  # (m) the question to ask
+    retrieved = retrieve(corpus, app, question, fusion, K)  # (c) stage 1, the search: the best chunks found
+    answer = generate(app, corpus, question, fusion, K)  # (t) stage 2: the application answers from those chunks
+    recall = recall_at_k(retrieved, item["gold_articles"], K) if item["gold_articles"] else None  # (e) stage 3: recall at article level, None when there is no gold article
+    sources = chunks_of(corpus, retrieved)  # (h) the chunks the application received: the faithfulness is checked against them
+    verdict = ask_judge(judge, faithfulness_prompt(answer.answer, format_sources(sources)), Verdict)  # (q) stage 4: faithfulness, answer against the received chunks
+    result = judge_correctness(judge, question, item["reference"], answer.answer)  # (a) stage 5: correctness, answer against the reference answer
+    correct = result is not None and result.correct  # (r) turn the judge's result into True or False
+    cell = diagnose(recall is None or recall >= 0.99, correct)  # (x) stage 6: retrieval good if every gold article was found
+    rows.append(make_row(item, answer, retrieved, recall, verdict, correct, cell))  # (w) stage 7: keep the results of this question
 # >>> AFTER: the fragments that run once, after the loop, go here (no indentation)
+summary_lines = summarise(rows)  # (s) aggregate: means and counts over all the questions
+grid = build_grid(rows)  # (g) group the questions by cell of the grid
+show_evaluation(rows, summary_lines, grid, RETRIEVER, judge[0])  # (p) the report
 # >>> END

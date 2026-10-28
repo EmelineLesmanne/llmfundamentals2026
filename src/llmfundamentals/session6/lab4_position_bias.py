@@ -49,9 +49,9 @@ for item in load_golden():
     #   A judge without position bias picks the same answer in both orders.
     #   A comparison such as (winner_1 == "A") gives True or False.
     # TODO: ask the judge again, with the weak answer shown first
-    winner_2 = None
+    winner_2 = judge_pair(judge, item["question"], weak, strong)
     # TODO: flipped is True if the judge did not choose the same answer in the two calls, False otherwise
-    flipped = None
+    flipped = (winner_1 == "A") != (winner_2 == "B")
 
     # Stops with a message while the TODOs are not done.
     if winner_2 is None or flipped is None:

@@ -1,16 +1,16 @@
 # Your labels for lab 1. One line per question: the id, faithful or unfaithful, correct or incorrect.
 # Replace the two question marks of each line. Example:   g04  faithful  incorrect
 # (The labelling sheet, opened in your browser, shows the answers, the chunks and the reference answers.)
-g01  ?  ?
-g02  ?  ?
-g03  ?  ?
-g04  ?  ?
-g05  ?  ?
-g06  ?  ?
-g07  ?  ?
-g08  ?  ?
-g09  ?  ?
-g10  ?  ?
-g11  ?  ?
-g12  ?  ?
-g13  ?  ?
+g01  faithful correct
+g02  unfaithful correct
+g03  faithful correct
+g04  faithful incorrect
+g05  faithful incorrect
+g06  faithful incorrect
+g07  faithful incorrect
+g08  faithful correct
+g09  faithful correct
+g10  faithful correct
+g11  faithful correct
+g12  faithful correct
+g13  faithful correct
